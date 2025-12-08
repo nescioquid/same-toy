@@ -1,13 +1,14 @@
 <script>
+  import AAndB from '$lib/AAndB.svelte'
   import DPad from '$lib/DPad.svelte'
-  import { Plus, Minus, Ellipsis } from '@lucide/svelte'
+  import { Ellipsis } from '@lucide/svelte'
 </script>
 
 <div
   class="card flex-row gap-[3vh] items-center justify-center bg-purple-700 border-9 border-purple-800 rounded-4xl h-[80vh] w-[160vh] p-[6vh] pt-[9vh]"
 >
   <!-- LEFT SIDE -->
-  <div class="flex flex-col items-center gap-[6vh] w-1/6">
+  <div class="flex flex-col items-center gap-[12vh] w-1/6">
     <!-- D-pad -->
     <DPad />
 
@@ -43,18 +44,7 @@
 
   <!-- RIGHT SIDE -->
   <div class="flex flex-col items-center gap-[6vh] w-1/6">
-    <!-- A + B buttons -->
-    <div class="flex flex-col items-center gap-[6vh]">
-      <button
-        title="A"
-        class="btn btn-circle btn-success opacity-90 border-6 size-[15vh]"
-        ><Plus class="opacity-50 size-[10vh]" /></button
-      >
-      <button
-        title="B"
-        class="btn btn-circle btn-error opacity-90 border-6 size-[15vh]"
-        ><Minus class="opacity-50 size-[10vh]" /></button
-      >
-    </div>
+    <!-- A+B buttons -->
+    <AAndB />
   </div>
 </div>
