@@ -1,6 +1,7 @@
 <script>
   import AAndB from '$lib/AAndB.svelte'
   import DPad from '$lib/DPad.svelte'
+  import PowerOnOff from '$lib/PowerOnOff.svelte'
   import { Ellipsis } from '@lucide/svelte'
 </script>
 
@@ -35,7 +36,7 @@
     </div>
     <!-- Logo -->
     <h2
-      class="text-center tracking-widest text-purple-900 text-[4vh] opacity-60"
+      class="text-center tracking-widest text-purple-900 text-[4vh] opacity-70"
     >
       <span class="font-semibold">SAME TOY</span>
       <span class="font-light"><em>PROGRESS</em></span>
@@ -46,5 +47,7 @@
   <div class="flex flex-col items-center gap-[6vh] w-1/6">
     <!-- A+B buttons -->
     <AAndB />
+    <!-- Power on/off toggle -->
+     <PowerOnOff />
   </div>
 </div>
