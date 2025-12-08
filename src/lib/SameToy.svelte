@@ -2,7 +2,7 @@
   import AAndB from '$lib/AAndB.svelte'
   import DPad from '$lib/DPad.svelte'
   import PowerOnOff from '$lib/PowerOnOff.svelte'
-  import { Ellipsis } from '@lucide/svelte'
+  import Start from '$lib/Start.svelte'
 </script>
 
 <div
@@ -12,14 +12,7 @@
   <div class="flex flex-col items-center gap-[12vh] w-1/6">
     <!-- D-pad -->
     <DPad />
-
-    <!-- Start button -->
-    <button
-      class="rounded-full btn btn-soft opacity-85 border-6 h-[6vh] w-[12vh]"
-      title="Start"
-    >
-      <Ellipsis class="opacity-50 size-[6vh]" />
-    </button>
+    <Start />
   </div>
 
   <!-- CENTER -->
@@ -45,9 +38,7 @@
 
   <!-- RIGHT SIDE -->
   <div class="flex flex-col items-center gap-[6vh] w-1/6">
-    <!-- A+B buttons -->
     <AAndB />
-    <!-- Power on/off toggle -->
-     <PowerOnOff />
+    <PowerOnOff />
   </div>
 </div>
