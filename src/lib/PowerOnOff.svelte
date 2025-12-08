@@ -12,7 +12,7 @@
 <button
   {onclick}
   class={`btn btn-soft btn-circle rounded-full opacity-85 h-[6vh] w-[12vh] border-6 ${
-    isOn ? 'border-success' : 'border-warning'
+    isOn ? 'border-info' : 'border-warning'
   }`}
 >
   <Dot class="opacity-50 size-[6vh]" />
