@@ -2,14 +2,14 @@
   import ThemeController from "$lib/ThemeController.svelte";
 </script>
 
-<div class="navbar bg-base-300 shadow-sm">
+<header class="navbar bg-base-100 shadow-sm">
   <div class="flex-1">
-    <a href="https://pokemon-gt.netlify.app/" class="btn btn-ghost text-xl"
+    <a href="https://pokemon-gt.netlify.app/" class="btn btn-ghost text-xl opacity-50"
       >Demo | Same Toy</a
     >
   </div>
   <div class="flex-none">
-    <button
+    <!-- <button
       title="menu" 
       class="btn btn-square btn-ghost">
       <svg
@@ -25,7 +25,7 @@
           d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"
         ></path>
       </svg>
-    </button>
+    </button> -->
     <ThemeController />
   </div>
-</div>
+</header>

@@ -1,7 +1,7 @@
 <footer
-  class="footer sm:footer-horizontal bg-base-300 text-base-300-content items-center p-4"
+  class="footer sm:footer-horizontal bg-base-100 text-base-200-content items-center p-4"
 >
-  <aside class="grid-flow-col items-center">
+  <aside class="grid-flow-col items-center opacity-50">
     <svg
       width="36"
       height="36"
@@ -17,7 +17,7 @@
     </svg>
     <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
   </aside>
-  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+  <nav class="grid-flow-col gap-4 md:place-self-center md:justify-self-end opacity-50">
     <a href="https://pokemon-gt.netlify.app/" title="Twitter">
       <svg
         xmlns="http://www.w3.org/2000/svg"
