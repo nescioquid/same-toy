@@ -1,6 +1,7 @@
 <script>
   import AAndB from '$lib/components/same-toy/AAndB.svelte'
   import DPad from '$lib/components/same-toy/DPad.svelte'
+  import Housing from '$lib/components/same-toy/Housing.svelte'
   import Logo from '$lib/components/same-toy/Logo.svelte'
   import PowerOn from '$lib/components/same-toy/PowerOn.svelte'
   import Screen from '$lib/components/same-toy/Screen.svelte'
@@ -8,9 +9,7 @@
   import Start from '$lib/components/same-toy/Start.svelte'
 </script>
 
-<div
-  class="card flex-row gap-[3vh] items-center justify-center bg-purple-700 border-[2vh] border-purple-800 rounded-4xl h-[80vh] w-[160vh] p-[6vh] pt-[9vh] opacity-95"
->
+<Housing>
   <!-- LEFT SIDE -->
   <div class="flex flex-col items-center gap-[6vh] flex-1">
     <Speaker class="flex-1" />
@@ -34,4 +33,4 @@
     <div class="flex-1"></div>
     <div class="flex-1"></div>
   </div>
-</div>
+</Housing>
