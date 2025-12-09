@@ -1,6 +1,6 @@
 <label class="swap swap-rotate opacity-50">
   <!-- this hidden checkbox controls the state -->
-  <input type="checkbox" class="theme-controller" value="light" />
+  <input type="checkbox" class="theme-controller" value="dark"/>
 
   <!-- sun icon -->
   <svg
