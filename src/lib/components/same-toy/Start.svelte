@@ -31,7 +31,7 @@
 <button
   title="Start"
   onclick={pressStart}
-  class="rounded-full btn btn-soft opacity-85 border-[1vh] h-[6vh] w-[12vh]
+  class="rounded-full btn btn-soft opacity-85 w-[12vh] h-[7vh] border-[1vh]
   {active === 'start' ? 'btn-active' : ''}"
 >
   <Ellipsis class="opacity-50 size-[6vh]" />

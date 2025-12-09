@@ -8,7 +8,7 @@
     if (isOn) return
     isOn = !isOn
   }}
-  class={`btn btn-soft btn-circle rounded-full opacity-85 h-[6vh] w-[12vh] border-[1vh] ${
+  class={`btn btn-soft btn-circle rounded-full opacity-85 w-[12vh] h-[7vh] border-[1vh] ${
     isOn ? 'border-info' : 'border-warning'
   }`}
 >
