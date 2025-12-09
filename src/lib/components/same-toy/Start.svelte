@@ -1,10 +1,38 @@
 <script>
   import { Ellipsis } from '@lucide/svelte'
+
+  let active = null
+
+  const activate = (pressed) => {
+    active = pressed
+    console.log('PRESS:', pressed)
+  }
+
+  const pressStart = () => activate('start')
+
+  const handlers = {
+    // p: pressStart,
+    // l: pressStart,
+    enter: pressStart,
+  }
+
+  function onkeydown(event) {
+    const key = event.key.toLowerCase()
+    handlers[key]?.()
+  }
+
+  function onkeyup(event) {
+    active = null
+  }
 </script>
 
+<svelte:window {onkeydown} {onkeyup} />
+
 <button
-  class="rounded-full btn btn-soft opacity-85 border-[1vh] h-[6vh] w-[12vh]"
   title="Start"
+  onclick={pressStart}
+  class="rounded-full btn btn-soft opacity-85 border-[1vh] h-[6vh] w-[12vh]
+  {active === 'start' ? 'btn-active' : ''}"
 >
   <Ellipsis class="opacity-50 size-[6vh]" />
 </button>
