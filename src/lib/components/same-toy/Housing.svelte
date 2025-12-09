@@ -1,8 +1,32 @@
-<!-- <div
-  class="card flex-row gap-[3vh] items-center justify-center border-[2vh] border-purple-800 rounded-4xl h-[80vh] w-[160vh] p-[6vh] pt-[9vh] opacity-90 bg-linear-to-br from-purple-700 to-blue-600"
-> -->
+<script>
+  let theme = $state('light');
+  let toggle; // reference to the checkbox
+
+  function updateTheme() {
+    theme = getComputedStyle(document.documentElement)
+      .getPropertyValue('color-scheme')
+      .trim();
+  }
+
+  $effect(() => {
+    updateTheme();
+
+    if (!toggle) return;
+
+    toggle.addEventListener('change', updateTheme);
+    return () => toggle.removeEventListener('change', updateTheme);
+  });
+</script>
+
+<svelte:document onchange = {updateTheme} />
+
 <div
-  class="card flex-row gap-[3vh] items-center justify-center border-[2vh] border-violet-800 rounded-t-[20vh] rounded-b-[30vh] h-[80vh] w-[160vh] p-[6vh] pt-[9vh] opacity-90 bg-linear-to-t from-violet-700 to-indigo-500"
+  class="card flex-row gap-[3vh] items-center justify-center border-[2vh] rounded-t-[20vh] rounded-b-[30vh] h-9/10 w-10/10 p-[6vh] pt-[9vh] opacity-90
+  {theme === 'dark'
+    ? ' bg-linear-to-t from-violet-800 to-indigo-600 border-violet-900'
+    // Original mono theme
+    // : ' bg-linear-to-t from-violet-700 to-indigo-500 border-violet-800'}"
+    : ' bg-linear-to-t from-violet-700 to-indigo-500 border-violet-800'}"
 >
   <slot />
 </div>
