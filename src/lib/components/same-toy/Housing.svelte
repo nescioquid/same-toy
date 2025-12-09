@@ -20,6 +20,7 @@
 
 <svelte:document onchange = {updateTheme} />
 
+<!-- svelte-ignore slot_element_deprecated -->
 <div
   class="card flex-row gap-[3vh] items-center justify-center border-[2vh] rounded-t-[17vh] rounded-b-[33vh] h-9/10 w-10/10 p-[6vh] pt-[9vh] opacity-90
   {theme === 'dark'
