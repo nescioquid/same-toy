@@ -9,7 +9,7 @@
 </script>
 
 <div
-  class="card flex-row gap-[3vh] items-center justify-center bg-purple-700 border-9 border-purple-800 rounded-4xl h-[80vh] w-[160vh] p-[6vh] pt-[9vh]"
+  class="card flex-row gap-[3vh] items-center justify-center bg-purple-700 border-[2vh] border-purple-800 rounded-4xl h-[80vh] w-[160vh] p-[6vh] pt-[9vh] opacity-95"
 >
   <!-- LEFT SIDE -->
   <div class="flex flex-col items-center gap-[6vh] flex-1">
@@ -21,7 +21,7 @@
   </div>
 
   <!-- CENTER -->
-  <div class="flex flex-col items-center justify-center gap-[2vh] flex-4">
+  <div class="flex flex-col items-center justify-center gap-[3vh] flex-4">
     <Screen />
     <Logo />
   </div>
