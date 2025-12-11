@@ -3,36 +3,18 @@
   import kaplay from 'kaplay'
   import { onMount } from 'svelte'
 
-  import { power } from '$lib/power.svelte'
+  let container
+  let k
 
-  let container // div that holds kaplay
-  let k // kaplay instance
-
-  // Resize the canvas to match the container
-  function resizeCanvas() {
-    if (!k || !container) return
-    const w = container.clientWidth
-    const h = container.clientHeight
-
-    if (typeof k.resize === 'function') {
-      k.resize(w, h)
-    }
-  }
-
-  // Initialize game when component mounts (only happens when poweredOn === true)
   $effect(() => {
-    if (!power.onOff) return
-
-    // Initialize KAPLAY engine
     k = kaplay({
       root: container,
       width: container.clientWidth,
       height: container.clientHeight,
       global: false,
-      letterbox: false,
+      letterbox: true,
     })
 
-    // Load assets
     k.loadSprite('bean', '/sprites/bean.png')
 
     // Create player
@@ -70,37 +52,6 @@
 
     k.onKeyDown((key) => handlers[key]?.())
 
-    // Kaplay resize listener
-    k.onResize(() => {
-      // Example: keep player centered on resize
-      // player.pos = k.vec2(k.width() / 2, k.height() / 2);
-      console.log('Kaplay resized:', k.width(), k.height())
-    })
-
-    // Initial resize sync
-    resizeCanvas()
-
-    // NOTE: Intentionally leaving in possible undocumented state by allowing KAPLAY to be initialized multiple times without being destroyed.
-
-    // Attempt #1:
-    
-    //   return () => {
-      //     k?.destroy?.()
-      //     k = null
-      //   }
-      
-    })
-
-  // Attempt #2:
-
-  // onDestroy(() => {
-  //   k?.destroy?.()
-  //   k = null
-  // })
 </script>
 
-<!-- Listen to window resizes -->
-<svelte:window on:resize={resizeCanvas} />
-
-<!-- Kaplay canvas container -->
 <div bind:this={container} class="w-full h-full overflow-hidden"></div>
