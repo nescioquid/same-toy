@@ -1,5 +1,10 @@
-export default async function createPlayer(k, x, y, spriteName, spritePath) {
+import { getKaplay } from '$lib/kaplay/kaplayConfig'
+
+export default async function createPlayer(spriteName, x, y) {
+  const k = getKaplay()
   const { loadSprite, add, pos, sprite, addKaboom, onKeyDown } = k
+
+  const spritePath = `/sprites/${spriteName}.png`
 
   await loadSprite(spriteName, spritePath)
 
@@ -21,6 +26,4 @@ export default async function createPlayer(k, x, y, spriteName, spritePath) {
   }
 
   onKeyDown((key) => handlers[key]?.())
-
-  return player
 }

@@ -2,20 +2,10 @@ import { createMap } from '$lib/kaplay/createMap'
 import createPlayer from '$lib/kaplay/createPlayer'
 import { getKaplay } from '$lib/kaplay/kaplayConfig'
 
-export default function game(k) {
-  const player = createPlayer(
-    k,
-    0,
-    0,
-    'bean',
-    '/sprites/bean.png'
-  )
+export default function game() {
+  const k = getKaplay()
 
-  const bedroomData = {
-    name: 'bedroom',
-    path: '/sprites/bedroom.png',
-    json: '/sprites/bedroom.json',
-  }
+  const map = createMap('bedroom-lg', 3)
 
-  createMap(k, bedroomData)
+  const player = createPlayer('bean', 0, 0)
 }
