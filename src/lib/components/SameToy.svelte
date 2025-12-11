@@ -1,12 +1,12 @@
 <script>
-  import AAndB from '$lib/components/AAndB.svelte'
-  import DPad from '$lib/components/DPad.svelte'
-  import Housing from '$lib/components/Housing.svelte'
-  import Logo from '$lib/components/Logo.svelte'
-  import Ignition from '$lib/components/Ignition.svelte'
-  import Screen from '$lib/components/Screen.svelte'
-  import Speaker from '$lib/components/Speaker.svelte'
-  import Start from '$lib/components/Start.svelte'
+  import AAndB from '$lib/components/sameToy/AAndB.svelte'
+  import DPad from '$lib/components/sameToy/DPad.svelte'
+  import Housing from '$lib/components/sameToy/Housing.svelte'
+  import Logo from '$lib/components/sameToy/Logo.svelte'
+  import Ignition from '$lib/components/sameToy/Ignition.svelte'
+  import Screen from '$lib/components/sameToy/Screen.svelte'
+  import Speaker from '$lib/components/sameToy/Speaker.svelte'
+  import Start from '$lib/components/sameToy/Start.svelte'
 </script>
 
 <Housing>
