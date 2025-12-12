@@ -4,8 +4,9 @@ import { getKaplay } from '$lib/kaplay/kaplayConfig'
 
 export default function game() {
   const k = getKaplay()
+  const { loadSprite, center } = k
 
-  const map = createMap('bedroom-lg', 3)
+  const map = createMap('bedroom-lg')
 
-  const player = createPlayer('bean', 0, 0)
+  const player = createPlayer('brendan', center())
 }

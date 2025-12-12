@@ -1,6 +1,7 @@
+import { SCALE_FACTOR } from "$lib/kaplay/constants";
 import { getKaplay } from '$lib/kaplay/kaplayConfig'
 
-export async function createMap(mapName, tileScale = 1) {
+export async function createMap(mapName) {
   const k = getKaplay()
   const {
     loadSprite,
@@ -14,6 +15,7 @@ export async function createMap(mapName, tileScale = 1) {
     Rect,
     vec2,
     scale,
+    z
   } = k
 
   const mapPath = `/sprites/${mapName}.png`
@@ -22,12 +24,12 @@ export async function createMap(mapName, tileScale = 1) {
   await loadSprite(mapName, mapPath)
 
   const parsedJSON = await (await fetch(mapJSON)).json()
-  const map = add([pos(0, 0)])
+  const map = add([pos(0, 0)], z(0))
   // setCamPos(map.pos)
   // setCamPos(vec2(container.clientWidth/2, container.clientHeight/2))
   // setCamScale(1)
 
-  map.add([sprite(mapName), scale(tileScale)])
+  map.add([sprite(mapName), scale(SCALE_FACTOR)])
 
   for (const layer of parsedJSON.layers) {
     if (layer.type === 'tilelayer') continue
