@@ -30,7 +30,12 @@
 
   function onkeydown(event) {
     const key = event.key.toLowerCase()
-    event.preventDefault()
+
+    // keys you want to block
+    const blockKeys = ['arrowup', 'arrowdown', 'arrowleft', 'arrowright', ' ']
+
+    if (blockKeys.includes(key)) event.preventDefault()
+
     handlers[key]?.()
   }
 
