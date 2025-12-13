@@ -1,24 +1,33 @@
 import { getKaplay } from '$lib/kaplay/kaplayConfig'
 import { SCALE_FACTOR, OFFSET } from '$lib/kaplay/constants'
 
-export default async function createPlayer(spriteName, xY) {
+export async function createPlayer(spriteName, x, y, frame=0) {
   const k = getKaplay()
   const {
     loadSprite,
     add,
-    pos,
     sprite,
-    onKeyPress,
+    area,
+    pos,
     z,
     scale,
-    area,
     vec2,
     onUpdate,
     dt,
     isKeyDown,
+    onKeyPress,
   } = k
 
-  const spritePath = `/sprites/${spriteName}.png`
+  const animFrame = {
+    north: 0,
+    west: 5,
+    south: 10,
+    east: 15,
+    faceStart: 1,
+    faceEnd: 2,
+    goStart: 0,
+    goEnd: 4,
+  }
 
   const animUp = 0
   const animLeft = 4
@@ -29,49 +38,41 @@ export default async function createPlayer(spriteName, xY) {
   const walkEnd = 3
   // const animSpeed = 10
 
-  await loadSprite(spriteName, spritePath, {
+  await loadSprite(spriteName, `/sprites/${spriteName}.png`, {
     sliceX: 5,
     sliceY: 4,
     anims: {
-      idleUp: {
-        from: animUp,
-        to: animUp + animOffset,
-        // speed: animSpeed,
+      faceUp: {
+        from: animFrame.north + animFrame.faceStart,
+        to: animFrame.north + animFrame.faceEnd,
       },
-      idleLeft: {
-        from: animLeft,
-        to: animLeft + animOffset,
-        // speed: animSpeed,
+      faceLeft: {
+        from: animFrame.west + animFrame.faceStart,
+        to: animFrame.west + animFrame.faceEnd,
       },
-      idleDown: {
-        from: animDown,
-        to: animDown + animOffset,
-        // speed: animSpeed,
+      faceDown: {
+        from: animFrame.south + animFrame.faceStart,
+        to: animFrame.south + animFrame.faceEnd,
       },
-      idleRight: {
-        from: animRight,
-        to: animRight + animOffset,
-        // speed: animSpeed,
+      faceRight: {
+        from: animFrame.east + animFrame.faceStart,
+        to: animFrame.east + animFrame.faceEnd,
       },
-      walkUp: {
-        from: animUp + walkStart,
-        to: animUp + walkEnd,
-        // speed: animSpeed,
+      goUp: {
+        from: animFrame.north + animFrame.goStart,
+        to: animFrame.north + animFrame.goEnd,
       },
-      walkLeft: {
-        from: animLeft + walkStart,
-        to: animLeft + walkEnd,
-        // speed: animSpeed,
+      goLeft: {
+        from: animFrame.west + animFrame.goStart,
+        to: animFrame.west + animFrame.goEnd,
       },
-      walkDown: {
-        from: animDown + walkStart,
-        to: animDown + walkEnd,
-        // speed: animSpeed,
+      goDown: {
+        from: animFrame.south + animFrame.goStart,
+        to: animFrame.south + animFrame.goEnd,
       },
-      walkRight: {
-        from: animRight + walkStart,
-        to: animRight + walkEnd,
-        // speed: animSpeed,
+      goRight: {
+        from: animFrame.east + animFrame.goStart,
+        to: animFrame.east + animFrame.goEnd,
       },
     },
   })
@@ -80,9 +81,9 @@ export default async function createPlayer(spriteName, xY) {
   y *= OFFSET
   
   const player = add([
-    sprite(spriteName),
+    sprite(spriteName, { frame: animFrame[frame] }),
     area(),
-    pos(xY),
+    pos(x, y),
     z(1),
     scale(SCALE_FACTOR),
     {
@@ -100,6 +101,24 @@ export default async function createPlayer(spriteName, xY) {
 
   // --- Movement updater ---
   onUpdate('player', () => {
+    // --- If not moving & holding the facing direction key → move ---
+    if (!player.isMoving) {
+      const key = player.direction
+      if (isKeyDown(key)) {
+        const vec =
+          key === 'up'
+            ? vec2(0, -1)
+            : key === 'left'
+            ? vec2(-1, 0)
+            : key === 'down'
+            ? vec2(0, 1)
+            : // key === 'right'
+              vec2(1, 0)
+
+        tryMove(key, vec)
+      }
+    }
+
     if (player.isMoving) {
       const dir = player.moveDir
       const step = dir.scale(player.speed * dt())
@@ -116,9 +135,9 @@ export default async function createPlayer(spriteName, xY) {
         player.pos = player.target.clone()
         player.isMoving = false
 
-        // play idle animation
+        // play face animation
         player.play(
-          'idle' +
+          'face' +
             player.direction.charAt(0).toUpperCase() +
             player.direction.slice(1)
         )
@@ -133,8 +152,8 @@ export default async function createPlayer(spriteName, xY) {
               ? vec2(-1, 0)
               : key === 'down'
               ? vec2(0, 1)
-              // key === 'right'
-              : vec2(1, 0)
+              : // key === 'right'
+                vec2(1, 0)
 
           tryMove(key, vec)
         }
@@ -150,8 +169,8 @@ export default async function createPlayer(spriteName, xY) {
 
     player.direction = dirName
 
-    // walk animation: walkUp, walkLeft, etc.
-    player.play('walk' + dirName.charAt(0).toUpperCase() + dirName.slice(1))
+    // go animation: goUp, goLeft, etc.
+    player.play('go' + dirName.charAt(0).toUpperCase() + dirName.slice(1))
 
     const targetX = player.pos.x + dirVec.x * OFFSET
     const targetY = player.pos.y + dirVec.y * OFFSET
@@ -164,10 +183,25 @@ export default async function createPlayer(spriteName, xY) {
   }
 
   // input
-  onKeyPress('up', () => tryMove('up', vec2(0, -1)))
-  onKeyPress('left', () => tryMove('left', vec2(-1, 0)))
-  onKeyPress('down', () => tryMove('down', vec2(0, 1)))
-  onKeyPress('right', () => tryMove('right', vec2(1, 0)))
+  function handleDirectionalPress(dirName, dirVec) {
+    // If already moving, ignore turn-taps
+    if (!player.isMoving) {
+      // If player is NOT facing this direction → just turn
+      if (player.direction !== dirName) {
+        player.direction = dirName
+        player.play('face' + dirName.charAt(0).toUpperCase() + dirName.slice(1))
+        return
+      }
+
+      // Player *is* facing the direction → attempt a tile move
+      tryMove(dirName, dirVec)
+    }
+  }
+
+  onKeyPress('up', () => handleDirectionalPress('up', vec2(0, -1)))
+  onKeyPress('left', () => handleDirectionalPress('left', vec2(-1, 0)))
+  onKeyPress('down', () => handleDirectionalPress('down', vec2(0, 1)))
+  onKeyPress('right', () => handleDirectionalPress('right', vec2(1, 0)))
 
   return player
 }
