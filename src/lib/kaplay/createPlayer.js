@@ -1,5 +1,5 @@
-import { SCALE_FACTOR, TILE_SIZE } from '$lib/kaplay/constants'
 import { getKaplay } from '$lib/kaplay/kaplayConfig'
+import { SCALE_FACTOR, OFFSET } from '$lib/kaplay/constants'
 
 export default async function createPlayer(spriteName, xY) {
   const k = getKaplay()
@@ -76,6 +76,9 @@ export default async function createPlayer(spriteName, xY) {
     },
   })
 
+  x *= OFFSET 
+  y *= OFFSET
+  
   const player = add([
     sprite(spriteName),
     area(),
@@ -150,8 +153,8 @@ export default async function createPlayer(spriteName, xY) {
     // walk animation: walkUp, walkLeft, etc.
     player.play('walk' + dirName.charAt(0).toUpperCase() + dirName.slice(1))
 
-    const targetX = player.pos.x + dirVec.x * TILE_SIZE * SCALE_FACTOR
-    const targetY = player.pos.y + dirVec.y * TILE_SIZE * SCALE_FACTOR
+    const targetX = player.pos.x + dirVec.x * OFFSET
+    const targetY = player.pos.y + dirVec.y * OFFSET
 
     // collision check can go here
 
