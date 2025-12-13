@@ -30,7 +30,7 @@ export default async function createPlayer(spriteName, xY) {
   // const animSpeed = 10
 
   await loadSprite(spriteName, spritePath, {
-    sliceX: 4,
+    sliceX: 5,
     sliceY: 4,
     anims: {
       idleUp: {
