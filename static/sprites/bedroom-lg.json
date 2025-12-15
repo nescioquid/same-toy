@@ -29,51 +29,51 @@
         {
          "draworder":"topdown",
          "id":3,
-         "name":"Colliders",
+         "name":"colliders",
          "objects":[
                 {
-                 "height":48,
+                 "height":1,
                  "id":1,
                  "name":"northwest_wall",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":384,
+                 "width":8,
                  "x":0,
                  "y":0
                 },
                 {
-                 "height":48,
+                 "height":1,
                  "id":2,
                  "name":"northeast_wall",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":192,
-                 "x":432,
+                 "width":4,
+                 "x":9,
                  "y":0
                 },
                 {
-                 "height":48,
+                 "height":1,
                  "id":3,
                  "name":"west_bed",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":48,
-                 "y":240
+                 "width":1,
+                 "x":1,
+                 "y":5
                 },
                 {
-                 "height":48,
+                 "height":1,
                  "id":4,
                  "name":"east_bed",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":528,
-                 "y":240
+                 "width":1,
+                 "x":11,
+                 "y":5
                 },
                 {
                  "height":1,
@@ -82,30 +82,30 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":624,
+                 "width":13,
                  "x":0,
-                 "y":384
+                 "y":8
                 },
                 {
-                 "height":384,
+                 "height":8,
                  "id":6,
                  "name":"west_oob",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":1,
-                 "x":0,
+                 "x":-1,
                  "y":0
                 },
                 {
-                 "height":384,
+                 "height":8,
                  "id":6,
                  "name":"east_oob",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":1,
-                 "x":624,
+                 "x":13,
                  "y":0
                 }],
          "opacity":1,
