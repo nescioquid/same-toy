@@ -4,11 +4,11 @@ import { OFFSET, SCALE_FACTOR } from '$lib/kaplay/constants'
 
 export function addPlayer(spriteName, x, y, frame = 0) {
   const k = getKaplay()
-  const { add, sprite, area, pos, z, scale, vec2, body } = k
+  const { add, sprite, area, pos, z, scale, vec2, body, Rect} = k
 
   return add([
     sprite(spriteName, { frame: playerAnim[frame] }),
-    area(),
+    area({ shape: new Rect(vec2(0, 16), 16, 16)}),
     pos(x * OFFSET, y * OFFSET),
     z(1),
     scale(SCALE_FACTOR),
