@@ -3,7 +3,9 @@ import { SCALE_FACTOR } from '$lib/kaplay/constants'
 
 export function addMap(mapData) {
   const k = getKaplay()
-  const { add, area, Rect, vec2, body, pos } = k
+  const { add, sprite, pos, z, scale, area, Rect, vec2, body } = k
+
+  const map = add([sprite('bedroom-lg'), pos(0, 0), z(0), scale(SCALE_FACTOR)])
 
   for (const layer of mapData.layers) {
     if (layer.type === 'tilelayer') continue

@@ -11,7 +11,7 @@
 
   onMount(() => {
     const k = initKaplay(container)
-    const { loadSprite, loadJSON, add, sprite, pos, z, scale, scene, go } = k
+    const { loadSprite, loadJSON, scene, go } = k
 
     loadPlayer('brendan')
 
@@ -23,23 +23,9 @@
       const player = addPlayer('brendan', 6, 3, 'south')
       attachPlayerMoves(player)
 
-      const map = add([
-        sprite('bedroom-lg'),
-        pos(0, 0),
-        z(0),
-        scale(SCALE_FACTOR),
-      ])
-
       mapData.then((mapJSON) => {
         addMap(mapJSON)
       })
-
-      // loadPlayer('brendan')
-      //   .then(() => loadMap('bedroom'))
-      //   .then((map) => {
-      //     addMap(map)
-      //     addPlayer('brendan', 6, 4)
-      //   })
     })
 
     go('game')
