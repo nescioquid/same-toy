@@ -1,10 +1,11 @@
 <script>
+  import { onMount } from 'svelte'
   import { initKaplay } from '$lib/kaplay/kaplayConfig'
   import { game } from '$lib/kaplay/game'
 
   let container = null
 
-  $effect(() => {
+  onMount(() => {
     if (!container) return
 
     const k = initKaplay(container)
