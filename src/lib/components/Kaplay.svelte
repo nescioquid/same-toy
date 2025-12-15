@@ -3,6 +3,7 @@
   import { initKaplay } from '$lib/kaplay/kaplayConfig'
   import { OFFSET, SCALE_FACTOR } from '$lib/kaplay/constants'
   import { loadPlayer, playerAnim } from '$lib/kaplay/loadPlayer'
+  import { addPlayer } from '$lib/kaplay/addPlayer'
 
   let container
 
@@ -13,24 +14,7 @@
     loadPlayer('brendan')
 
     scene('game', () => {
-      let x = 6 * OFFSET
-      let y = 3 * OFFSET
-
-      const player = add([
-        sprite('brendan', { frame: playerAnim.south }),
-        area(),
-        pos(x, y),
-        z(1),
-        scale(SCALE_FACTOR),
-        {
-          speed: 200,
-          direction: 'south',
-          isMoving: false,
-          // target: vec2(0, 0),
-          // moveDir: vec2(0, 0),
-        },
-        'player',
-      ])
+      addPlayer('brendan', 6, 3, 'south')
     })
 
     go('game')
