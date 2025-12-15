@@ -3,11 +3,9 @@
   import { initKaplay } from '$lib/kaplay/kaplayConfig'
   import { game } from '$lib/kaplay/game'
 
-  let container = null
+  let container
 
   onMount(() => {
-    if (!container) return
-
     const k = initKaplay(container)
 
     game()
